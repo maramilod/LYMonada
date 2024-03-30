@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+canvas {
+  height: 100vh !important;
+
+  display: block;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+ /* background : #000;*/
+ background-image: url(assets/background.png);
+ background-attachment: fixed;
+ background-repeat: no-repeat; /* Prevents the background image from repeating */
+ background-size: cover;
+}
+
+
+
+@layer utilities {
+
+  .info-box {
+    margin-top: -4.25rem;
+    @apply mx-5 relative flex text-white flex-col gap-3 max-w-2xl neo-brutalism-blue pt-4 pb-12 px-8;
+        /* border: #2b77e7; */
+        box-shadow: 0.6vmin 0.6vmin #091e3e, 1vmin 1vmin #113a4e, 1vmin 1vmin #0092db, 0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+        background: #2b77e769;
+    
+  }
+
+  .neo-btn {
+    @apply py-3 px-6 rounded-lg text-blue-500 text-center font-semibold sm:w-1/2 w-[90%] -bottom-5 absolute mx-auto right-0 left-0 flex justify-center items-center gap-3;
+    width: 38%;
+    color: #091e3e;
+  }
+
+  .cta-text {
+    @apply text-black-500 font-extrabold flex-1 text-3xl max-md:text-center;
+  }
+}
+.social-icons {
+  display: flex;
+  justify-content: space-around; 
+  margin-left: 24%;/* Optional: Adjusts spacing between images */
+  margin-right: 24%;
+ }
+ 
+/* Neo Brutalism */
+.neo-brutalism-blue {
+  background: #2b77e7;
+  position: relative;
+  border-radius: 10px;
+  border: #2b77e7;
+  box-shadow: 0.6vmin 0.6vmin #336cc1, 1vmin 1vmin #0092db, 1vmin 1vmin #0092db,
+    0.65vmin 1vmin #0092db, 1vmin 0.65vmin #0092db;
+}
+
+.neo-brutalism-white {
+  background: #ffffffd1;
+  border: #fff;
+  box-shadow: 0.6vmin 0.6vmin #12316069, 1vmin 1vmin #d2e4ff, 1vmin 1vmin #d2e4ffa6, 0.65vmin 1vmin #d2e4ffcc, 1vmin 0.65vmin #d2e4ff00;
+}
