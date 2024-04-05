@@ -1,332 +1,85 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Canvas } from '@react-three/fiber';
-import { Environment} from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 
-import  LLoader  from "../components/LLoader";
+import LLoader from "../components/LLoader";
 import Lujain_room from '../../public/Lujain_home';
 
-import { violin, lmute ,llog} from "../assets/icons";
+import { violin, lmute, llog } from "../assets/icons";
 import gu from "../assets/gu.mp3";
 
+import AdminInterface1 from './AdminInterface1';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/analytics';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import './chat-css/home.css';
 
+// Firebase configuration
+const firebaseConfig = {
+ apiKey: "AIzaSyBnSXpKbw_BxrNWD6W6GFgi90f8O3ljyX0",
+ authDomain: "lymonada2.firebaseapp.com",
+ projectId: "lymonada2",
+ storageBucket: "lymonada2.appspot.com",
+ messagingSenderId: "563990784076",
+ appId: "1:563990784076:web:7d791b14b3bad0a4afece9",
+ measurementId: "G-8KH4R7D41W"
+};
 
-//import { useThree, useFrame } from '@react-three/fiber';
-//import { Html } from '@react-three/drei';
-//import { BoxGeometry, MeshBasicMaterial } from 'three';
-// function ClickableMesh() {
-//   const { raycaster, camera, scene, mouse } = useThree();
- 
-//   // Function to change camera position
-//   const changeCameraPosition = () => {
-//     camera.position.set(-6.848, 31.208, -1.574);
-//     camera.rotation.set(0.013, -0.727, 0.009);
-//     camera.far.set(100);
-//     camera.fov.set(22.895);
-//     camera.near.set(0.1);
-//     camera.scale.set(0.472);
-//     camera.updateProjectionMatrix();
-//   };
- 
-//   useFrame(() => {
-//      // Update the raycaster with the current mouse position
-//      raycaster.setFromCamera(mouse, camera);
- 
-//      // Calculate objects intersecting the picking ray
-//      const intersects = raycaster.intersectObjects(scene.children, true);
- 
-//      // Check if the specific mesh is intersected
-//      if (intersects.length > 0) {
-//        const intersectedObject = intersects[0].object;
-//        if (intersectedObject.name === "home") {
-//          console.log('Home mesh clicked');
-//          changeCameraPosition(); // Call the function to change camera position
-//        }
-//      }
-//   });
- 
-//   return null;
-//  }
-
-
-/*
-
-
-
- function ClickableMesh() {
-  const { raycaster, camera, scene, mouse, gl } = useThree();
- 
-  const changeCameraPosition = () => {
-        camera.position.set(-6.848, 31.208, -1.574);
-        camera.rotation.set(0.013, -0.727, 0.009);
-        camera.far.set(1000);
-        camera.fov.set(22.895);
-        camera.near.set(0.1);
-        camera.scale.set(0.472);
-        camera.updateProjectionMatrix();
-      };
- 
-  useEffect(() => {
-     const handleClick = (event) => {
-       raycaster.setFromCamera(mouse, camera);
- 
-       const intersects = raycaster.intersectObjects(scene.children, true);
- 
-       if (intersects.length > 0) {
-         const intersectedObject = intersects[0].object;
-         if (intersectedObject.name === "home") {
-           console.log('screen mesh clicked');
-           changeCameraPosition();
-         }
-       }
-     };
-      gl.domElement.addEventListener('click', handleClick);
- 
-     return () => {
-       gl.domElement.removeEventListener('click', handleClick);
-     };
-  }, [raycaster, camera, scene, mouse, gl]);
- 
-  return null;
- }
-
-
-
-
-
-
-
- 
-
- function Screen1() {
-  const { raycaster, camera, scene, mouse, gl } = useThree();
- 
-  const changeCameraPosition = () => {
-     camera.position.set(-4.318, 31.243, -3.695);
-     camera.rotation.set(-0.103, -1.144, -0.094);
-     camera.far.set(100);
-     camera.scale.set(0.472);
-     camera.updateProjectionMatrix();
-  };
- 
-  useEffect(() => {
-     const handleClick = (event) => {
-       raycaster.setFromCamera(mouse, camera);
-       const intersects = raycaster.intersectObjects(scene.children, true);
-       if (intersects.length > 0) {
-         const intersectedObject = intersects[0].object;
-         if (intersectedObject.name === "Plane") {
-           console.log('screen111 mesh clicked');
-           changeCameraPosition();
-         }
-       }
-     };
- 
-     gl.domElement.addEventListener('click', handleClick);
- 
-     return () => {
-       gl.domElement.removeEventListener('click', handleClick);
-     };
-  }, [raycaster, camera, scene, mouse, gl]);
- 
-  // return (
-  //   <group name="PlaneGroup" position={[-3.706, 31.215, -3.967]} rotation={[0, 0, 1.139]}>
-  //   <mesh name="Plane" position={[-3.706, 31.215, -3.967]} rotation={[0, 0, 1.139]} scale={0.07}>
-  //      <boxGeometry args={[1, 1, 1]} />
-  //      <meshBasicMaterial color={0x00fff} />
-  //   </mesh>
-  //   <Html scaleFactor={3} position={[0, 0, 0]}>
-  //      <div className="content">
-  //        <h1>Hello, welcome to my room! Take some pizza.</h1>
-  //      </div>
-  //   </Html>
-  //  </group>
-   
-  // );
-
-
- }
- 
- 
-
-
-
-
-
-
-
-//  function Screen2() {
-//   const { raycaster, camera, scene, mouse } = useThree();
- 
-//   // Function to change camera position
-//   const changeCameraPosition = () => {
-//     camera.position.set();
-//     camera.rotation.set();
-//     camera.far.set(100);
-//     camera.scale.set(0.472);
-//      camera.updateProjectionMatrix();
-//   };
- 
-//   useFrame(() => {
-//      // Update the raycaster with the current mouse position
-//      raycaster.setFromCamera(mouse, camera);
- 
-//      // Calculate objects intersecting the picking ray
-//      const intersects = raycaster.intersectObjects(scene.children, true);
- 
-//      // Check if the specific mesh is intersected
-//      if (intersects.length > 0) {
-//        const intersectedObject = intersects[0].object;
-//        if (intersectedObject.name === "") {
-//          console.log('screen mesh clicked');
-//          changeCameraPosition(); // Call the function to change camera position
-//        }
-//      }
-//   });
- 
-//   return null;
-//  }
-
-
-
-
-//this the computer screen
-
- function Screen2() {
-  const { raycaster, camera, scene, mouse, gl } = useThree();
- 
-  // Function to change camera position
-  const changeCameraPosition = () => {
-     camera.position.set(-4.897, 31.23, -4.163);
-     camera.rotation.set(-0.109, -0.403, -0.043);
-     camera.far.set(100);
-     camera.scale.set(0.472);
-     camera.updateProjectionMatrix();
-  };
- 
-  useEffect(() => {
-     const handleClick = (event) => {
-      
-       raycaster.setFromCamera(mouse, camera);
- 
-       
-       const intersects = raycaster.intersectObjects(scene.children, true);
- 
-     
-       if (intersects.length > 0) {
-         const intersectedObject = intersects[0].object;
-         if (intersectedObject.name === "Plane001") {
-           console.log('screen2 mesh clicked');
-           changeCameraPosition();
-         }
-       }
-     };
- 
-    
-     gl.domElement.addEventListener('click', handleClick);
- 
-  
-     return () => {
-       gl.domElement.removeEventListener('click', handleClick);
-     };
-  }, [raycaster, camera, scene, mouse, gl]);
- 
-  return null;
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-function Screen3() {
- const { raycaster, camera, scene, mouse, gl } = useThree();
-
- // Function to change camera position
- const changeCameraPosition = () => {
-    camera.position.set(-5.518, 30.948, -3.893);
-    camera.rotation.set(-0.167, -0.759, -0.116);
-    camera.far.set(100);
-    camera.scale.set(0.472);
-    camera.updateProjectionMatrix();
- };
-
- useEffect(() => {
-    const handleClick = (event) => {
-      // Update the raycaster with the current mouse position
-      raycaster.setFromCamera(mouse, camera);
-
-      // Calculate objects intersecting the picking ray
-      const intersects = raycaster.intersectObjects(scene.children, true);
-
-      // Check if the specific mesh is intersected
-      if (intersects.length > 0) {
-        const intersectedObject = intersects[0].object;
-        if (intersectedObject.name === "laptop001") {
-          console.log('laptop mesh clicked');
-          changeCameraPosition(); // Call the function to change camera position
-        }
-      }
-    };
-
-    // Add the click event listener
-    gl.domElement.addEventListener('click', handleClick);
-
-    // Cleanup the event listener on component unmount
-    return () => {
-      gl.domElement.removeEventListener('click', handleClick);
-    };
- }, [raycaster, camera, scene, mouse, gl]);
-
- return null;
+// Initialize Firebase if not already initialized
+if (!firebase.apps.length) {
+ firebase.initializeApp(firebaseConfig);
+} else {
+ firebase.app();
 }
 
+export const firebaseInstance = firebase;
 
+export const auth = firebase.auth();
+const firestore = firebase.firestore();
+const analytics = firebase.analytics();
+const adminUserId = '1FFgWfjwbjgXSYI9Xh0dm1iTs5J3';
 
- camera={{ position: [30.378, -1.611, 78.232], far: 1000, fov:23.500, near: 0.1, rotation: [0.236, 0.411, -0.096] }}
-*/
+const Lujain = () => {
+ const [count, setCount] = useState(5);
+ const [user] = useAuthState(auth);
+ const [isAdmin, setIsAdmin] = useState(false);
 
+ // Check if the current user is an admin
+ useEffect(() => {
+    if (user) {
+      setIsAdmin(user.uid === adminUserId);
+    } else {
+      setIsAdmin(false);
+    }
+ }, [user]);
 
+ const audioRef = useRef(new Audio(gu));
+ audioRef.current.volume = 0.4;
+ audioRef.current.loop = true;
+ const [isPlayingMusic, setIsPlayingMusic] = useState(true);
 
-
-
-
-
-const Lujain = ()  => {
-  const audioRef = useRef(new Audio(gu));
-  audioRef.current.volume = 0.4;
-  audioRef.current.loop = true;
-  const [isPlayingMusic, setIsPlayingMusic] = useState(true);
- //this function run evry time the isplaingmusic value change
-  useEffect(() => {
+ // Play or pause music based on isPlayingMusic state
+ useEffect(() => {
     if (isPlayingMusic) {
       audioRef.current.play();
-    }
-    return () => {
+    } else {
       audioRef.current.pause();
-    };
-  }, [isPlayingMusic]);
-  
-  return (
-  <section className='w-full h-screen relative'>
-  
-    <Canvas  id="number" width="64" height="64">
-      <Suspense fallback={<LLoader />}>
-        <Lujain_room/>
-        <ambientLight intensity={0.100} />
-        <Environment preset='sunset' />
-      </Suspense>  
-    </Canvas >
+    }
+ }, [isPlayingMusic]);
+
+ return (
+    <section className='w-full h-screen relative'>
+      <Canvas id="number" width="64" height="64">
+        <Suspense fallback={<LLoader />}>
+          <Lujain_room />
+          <ambientLight intensity={0.100} />
+          <Environment preset='sunset' />
+        </Suspense>
+      </Canvas>
       <div className='absolute bottom-2 left-2'>
         <img
           src={!isPlayingMusic ? violin : lmute}
@@ -336,15 +89,149 @@ const Lujain = ()  => {
         />
       </div>
       <div className='absolute bottom-3 left-20'>
-        <Link to='../' >
-        <img
-          src={llog}
-          alt='jukebox'
-          className='w-71 h-8 cursor-pointer object-contain'
-        />
+        <Link to='../'>
+          <img
+            src={llog}
+            alt='jukebox'
+            className='w-71 h-8 cursor-pointer object-contain'
+          />
         </Link>
       </div>
+      <div className="absolute bottom-4 right-2">
+        <header>
+          <SignOut />
+        </header>
+        {isAdmin ? (
+          <AdminInterface1 />
+        ) : user ? (
+          <ChatRoom />
+        ) : (
+          <SignIn />
+        )}
+      </div>
     </section>
-    );
-  }
+ );
+}
+
+// Function to sign in with Google
+function SignIn() {
+ const signInWithGoogle = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+ }
+
+ const signInButtonStyle = {
+    backgroundColor: ' rgb(192, 84, 13)',
+    color: 'white',
+    padding: '10px 10px',
+    border: 'none',
+    borderRadius: '50px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    margin: '10px',
+ };
+
+ return (
+    <>
+      <button className="sign-in" style={signInButtonStyle} onClick={signInWithGoogle}>chatme</button>
+    </>
+ );
+}
+
+// Function to sign out
+function SignOut() {
+ const signOutButtonStyle = {
+    backgroundColor: ' rgb(192, 84, 13)',
+    color: 'black',
+    padding: '10px 10px',
+    border: 'none',
+    borderRadius: '30px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    margin: '10px',
+ };
+
+ return auth.currentUser && (
+    <button className="sign-out" style={signOutButtonStyle} onClick={() => auth.signOut()}>🙋‍♀️</button>
+ );
+}
+
+// Function to handle chat room functionality
+function ChatRoom() {
+ const dummy = useRef();
+ const messagesRef = firestore.collection('users1');
+ const query = messagesRef.orderBy('createdAt').limit(25);
+
+ const [messages] = useCollectionData(query, { idField: 'id' });
+
+ const [formValue, setFormValue] = useState('');
+
+ // Function to send a message
+ const sendMessage = async (e) => {
+    e.preventDefault();
+
+    const { uid, photoURL, email } = auth.currentUser;
+
+    await messagesRef.add({
+      email,
+      text: formValue,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      uid,
+      photoURL,
+      receiverId: adminUserId
+    });
+
+    setFormValue('');
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
+ }
+
+ // Filter messages to show only relevant ones
+ const filteredMessages = messages && messages.filter(msg => 
+    (msg.uid === auth.currentUser.uid && msg.receiverId === adminUserId) ||
+    (msg.uid === adminUserId && msg.receiverId === auth.currentUser.uid)
+ );
+
+ return (
+    <>
+      <main className="chat-areal">
+        {filteredMessages && filteredMessages.map(msg => (
+          <div key={msg.id} className={`message ${msg.uid === auth.currentUser.uid ? 'sent-message' : 'received-message'}`}>
+            <ChatMessage message={msg} />
+            {msg.reply && (
+             <div className="admin-reply">
+               <div className="admin-photol"/>
+               <div className="admin-messagel">
+                 <p>{msg.reply}</p>
+               </div>
+              </div>
+            )}
+          </div>
+        ))}
+        <span ref={dummy}></span>
+      </main>
+
+      <form className="input-form" onSubmit={sendMessage}>
+        <input className="input-fieldl" value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="Holla" />
+        <button className="send-button" type="submit" disabled={!formValue}>🕊️</button>
+      </form>
+    </>
+ );
+}
+
+// Function to display a single chat message
+function ChatMessage(props) {
+ const { text, uid, photoURL } = props.message;
+
+ const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
+
+ return (
+    <>
+      <div className={`message ${messageClass}`}>
+        <img className="user-photo" src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png' } />
+       <div className="user-messagel"><p>{text}</p></div> 
+      </div>
+    </>
+ );
+}
+
 export default Lujain;
