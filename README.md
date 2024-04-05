@@ -49,6 +49,10 @@ To explore the Lymonada world, navigate through the three rooms. Each room is de
 
 If you're interested in contributing to the Lymonada project, please fork the repository and use a feature branch. Pull requests are welcome!
 
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
 ## Acknowledgments
 
 - Thanks to the Sketchfab community for providing tools and resources for 3D modeling.
