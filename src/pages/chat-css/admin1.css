@@ -1,0 +1,205 @@
+*{
+    font-family: 'Arial', 'Times New Roman', Times, serif;
+}
+
+.admin-interface1 {
+    height: 400px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(247, 243, 243, 0.8);
+    overflow: hidden;
+    max-height: 400px; 
+    overflow-y: auto;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    padding: 10px; 
+}
+
+
+
+.admin-interface1 h2 {
+    margin-bottom: 20px;
+    color: #f44336;
+}
+.admin-interface1 p {
+    margin-bottom: 20px;
+    color: #f44336;
+}
+
+.admin-interface1 ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px; /* Fixed height for the list */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+
+.admin-interface1 li {
+    padding: 10px;
+    background-color: #000000;
+    color: aliceblue;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-interface1 li:hover {
+    background-color: #211a1a;
+}
+
+.admin-interface1 form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    
+}
+
+.admin-interface1 input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background-color: #050505;
+    border-radius: 5px;
+    color: #ccc;
+    width: 100%;
+}
+
+.admin-interface1 button[type="submit"] {
+    padding: 10px;
+    background-color: #050505;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: fixed; /* Position the send button to be always visible */
+    bottom: 20px;
+    right: 20px;
+}
+
+.admin-interface1 button[type="submit"]:hover {
+    background-color: #f44336;
+}
+
+/* Adjusted button styles for mobile */
+.email-button-1, .admin-interface1 .delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.email-button-1 {
+    background-color: rgb(255, 106, 0);
+}
+
+.admin-interface1 .delete-button {
+    background-color: #090909;
+    color: #ccc;
+    box-shadow: 0 2px 4px rgba(243, 5, 5, 1);
+}
+
+.email-button-1:hover, .admin-interface1 .delete-button:hover {
+    background-color: #3b423b;
+}
+
+.admin-interface1 .messages-container {
+    max-height: 100px; 
+    overflow-y: auto; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 375px) {
+    body{
+        text-rendering: optimizeLegibility;
+        font-size: 16px;
+    }
+    .admin-interface1 {
+        width: 40%;
+        height: auto;
+        padding: 10px;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        overflow: auto;
+    }
+
+    .admin-interface1 ul {
+        max-height: 50px;
+    }
+
+    .admin-interface1 input[type="text"] {
+        font-size: 10px;
+
+
+    }
+
+    .admin-interface1 button[type="submit"], .email-button-1, .admin-interface1 .delete-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+.email-button-1, .admin-interface1 .delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+@media (max-width: 480px) {
+    body{
+       
+        font-size: 16px; /* Adjust based on your needs */
+        text-rendering: optimizeLegibility;
+    }
+    .admin-interface1 {
+        width: 80%; /* Adjusted for better responsiveness */
+        height: auto;
+        padding: 10px;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        overflow: auto;
+    }
+
+    .admin-interface1 ul {
+        max-height: 50px;
+    }
+
+    .admin-interface1 input[type="text"] {
+        font-size: 10px;
+    }
+
+    .admin-interface1 button[type="submit"], .email-button-1, .admin-interface1 .delete-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
