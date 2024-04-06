@@ -2,12 +2,12 @@
 
 ## Overview
 
-Lymonada is a unique 3D project that showcases a virtual world with three distinct rooms, each representing a member of the team with their unique personality. The project utilizes Sketchfab for 3D modeling and rendering, employing GLTF and GLB formats for seamless integration. Additionally, each room features an interactive chat system powered by Firebase, enhancing the user experience with real-time communication. The project is built using Three.js, a popular JavaScript library for creating and displaying animated 3D computer graphics in a web browser.
+Lymonada is a unique 3D project that showcases a virtual world with three distinct rooms, each representing a member of the team with their unique personality. The project utilizes Blender for 3D modeling and rendering, employing GLTF and GLB formats for seamless integration. Additionally, each room features an interactive chat system powered by Firebase, enhancing the user experience with real-time communication. The project is built using Three.js, a popular JavaScript library for creating and displaying animated 3D computer graphics in a web browser.
 
 ## Fun Facts
 
 - **Inspiration**: The concept of Lymonada was inspired by the desire to create a virtual space where team members could showcase their unique personalities and talents, fostering a sense of community and collaboration.
-- **Technology Choices**: The decision to use Sketchfab for 3D modeling and rendering was driven by its ease of use and the ability to create high-quality 3D models with minimal effort.
+- **Technology Choices**: The decision to use Blender for 3D modeling and rendering was driven by its ease of use and the ability to create high-quality 3D models with minimal effort.
 - **Real-time Chat**: The integration of Firebase for real-time chat functionality was a game-changer, enabling users to communicate instantly and enhance their experience within the virtual world.
 - **Accessibility**: Lymonada is designed with accessibility in mind, ensuring that users with disabilities can navigate through the rooms and engage with the chat system without any barriers.
 - **Sustainability**: The project emphasizes sustainable practices in 3D modeling and development, using resources efficiently and promoting recycling and reuse of materials.
@@ -42,7 +42,7 @@ To explore the Lymonada world, navigate through the three rooms. Each room is de
 - **Tailwind CSS**: For styling the application.
 - **Firebase**: For implementing the chat functionality and user authentication.
 - **React Router**: For managing navigation between different parts of the application.
-- **Sketchfab**: For 3D modeling and rendering.
+- **Blender**: For 3D modeling and rendering.
 - **Three.js**: For creating and displaying animated 3D computer graphics in a web browser.
 
 ## Contributing
